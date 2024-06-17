@@ -326,6 +326,7 @@ impl Query {
         Ok(self
             .run(args)?
             .split('\n')
+            .filter(|l| !l.is_empty())
             .map(|s| s.parse::<SvcStatus>())
             .collect::<Result<Vec<SvcStatus>, _>>()?
             .into_iter())
